@@ -28,6 +28,79 @@ Ancestral home of the Muweka Ohlone.
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Latency is the Site Killer}
+
+Every 100ms of latency in your site lose more customers
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Exponential Black Swans}
+
+\begin{itemize}
+\item Exponential: $~e^{-x}$
+\item Normal: $~e^{-x^2}$
+\end{itemize}
+
+\end{frame}
+
+Nobody is 9 feet tall,
+but some people have millions of followers on Twitter.
+
+\begin{frame}
+\frametitle{Averages Lie}
+
+Only good for normal distributions
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Your Backend is Slow}
+
+Exponential, not normal
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Multiplicity Magnifies Outliers}
+
+With 5 queries:
+
+\begin{itemize}
+\item P90 becomes P50
+\item P99 becomes P90
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Let's Write Some Code}
+
+\lstinputlisting[firstline=12]{middle-fanout.py}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation Results}
+
+Parameters:
+\begin{itemize}
+\item Average latency: 0.6s
+\item P90 latency: 5s
+\item Fanout: 5
+\end{itemize}
+
+Out of 50 runs:
+
+\begin{itemize}
+\item 33 took around half a second
+\item 15 took five seconds
+\item 1 took ten seconds
+\item 1 took fifteen seconds
+\end{itemize}
+\end{frame}
+
 
 \begin{itemize}
 \item Your Backend is Slow
