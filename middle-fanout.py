@@ -1,10 +1,12 @@
+import json
 import os
 import flask
 import httpx
 
+MEAN = os.environ['MEAN']
+FANOUT = int(os.environ["FANOUT"])
 CLIENT = httpx.Client(timeout=None)
-URL = 'http://localhost:8080/slow?' + '&'.join(f"slow={float(part)}" for part in os.environ.get("SLOW", "").split(",") if part)
-FANOUT = int(os.environ.get("FANOUT", "1"))
+URL = f'http://localhost:8080/slow?mean={MEAN}'
 
 from flask import Flask
 app = Flask(__name__)
@@ -15,4 +17,4 @@ def hello_world():
         CLIENT.get(URL).json()["value"]
         for x in range(FANOUT)
     )
-    return f'Total {all_values}'
+    return json.dumps(dict(total=all_values))
