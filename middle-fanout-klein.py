@@ -1,18 +1,24 @@
 import os
-import flask
-import httpx
+import klein
+import treq
+from twisted.internet import reactor
+from twisted.web import client as twclient
+from twisted.internet import defer
 
-CLIENT = httpx.Client(timeout=None)
-URL = 'http://localhost:8080/slow?' + '&'.join(f"slow={float(part)}" for part in os.environ.get("SLOW", "").split(",") if part)
-FANOUT = int(os.environ.get("FANOUT", "1"))
+CLIENT = treq.client.HTTPClient(twclient.Agent(reactor))
+MEAN = os.environ['MEAN']
+FANOUT = int(os.environ["FANOUT"])
+URL = f'http://localhost:8080/slow?mean={MEAN}'
 
-from flask import Flask
-app = Flask(__name__)
+from klein import app
 
 @app.route('/')
-def hello_world():
-    all_values = sum(
-        CLIENT.get(URL).json()["value"]
+async def hello_world(request):
+    all_values = await defer.gatherResults([
+        CLIENT.get(URL).addCallback(treq.json_content)
         for x in range(FANOUT)
-    )
-    return f'Total {all_values}'
+    ])
+    total = sum(res["value"] for res in all_values)
+    return f'Total {total}'
+
+app.run(host="127.0.0.1", port=8081)

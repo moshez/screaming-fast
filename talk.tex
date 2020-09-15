@@ -81,31 +81,27 @@ With 5 queries:
 \begin{frame}
 \frametitle{Let's Write Some Code}
 
-\lstinputlisting[firstline=12]{middle-fanout.py}
+\lstinputlisting[firstline=14]{middle-fanout.py}
 
 \end{frame}
+
+This is simplified code that shows what usually goes on
+in the "middle tier":
+makes some queries to the backend,
+do some local computation,
+and return a JSON.
+
+How long does it take?
+The sum of all the times.
+This means that a backend that is *occasionally* slow
+will make this function *almost always* slow.
 
 \begin{frame}
-\frametitle{Simulation Results}
+\frametitle{Let's Write Some Code}
 
-Parameters:
-\begin{itemize}
-\item Average latency: 0.6s
-\item P90 latency: 5s
-\item Fanout: 5
-\end{itemize}
+\lstinputlisting[firstline=15,lastline=22]{middle-fanout-klein.py}
 
-Out of 50 runs:
-
-\begin{itemize}
-\item 33 took around half a second
-\item 15 took five seconds
-\item 1 took ten seconds
-\item 1 took fifteen seconds
-\end{itemize}
 \end{frame}
-
-https://en.wikipedia.org/wiki/Log-normal_distribution
 
 
 \begin{itemize}
