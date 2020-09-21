@@ -103,6 +103,34 @@ will make this function *almost always* slow.
 
 \end{frame}
 
+Parallelizing clients means taking a maximum,
+not the sum.
+What's the difference?
+If you are almost sure to get a single slow hit,
+now the timing is constant:
+it does not matter if it is 2 or 1.
+
+Being slowest as the slowest request,
+and not the sum of the two slowest requests,
+is progress.
+
+\begin{frame}
+\frametitle{Let's Simulate}
+
+With fanout of 10:
+
+\begin{itemize}
+\item P50: each: 0.04 seq: 0.82 par 0.3
+\item P90: each: 0.23 seq: 1.8 par 0.98
+\item P99: each: 1.04 seq: 4.33 par 3.05
+\end{itemize}
+
+\end{frame}
+
+While it does not improve the P99 by much,
+parallelization gives us 3x-2x speedups
+at P50 and P99.
+
 
 \begin{itemize}
 \item Your Backend is Slow
