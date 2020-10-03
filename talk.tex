@@ -131,7 +131,31 @@ While it does not improve the P99 by much,
 parallelization gives us 3x-2x speedups
 at P50 and P99.
 
+\begin{frame}
+\frametitle{Timing Out and Retry}
 
+Temporary slow-downs
+
+\end{frame}
+
+When backends are slow, this is often transient.
+A single host might be overloaded.
+The disk might be busy.
+A packet might be lost.
+Giving up quickly and retrying can often mean the difference.
+
+\begin{frame}
+\frametitle{Let's Write Some Code}
+
+\lstinputlisting[firstline=15,lastline=21]{middle-fanout-klein-retry.py}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Let's Simulate}
+
+\end{frame}
 
 
 \begin{itemize}
