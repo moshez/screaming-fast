@@ -36,6 +36,20 @@ Every 100ms of latency in your site lose more customers
 \end{frame}
 
 \begin{frame}
+\frametitle{(Micro)service Architecture}
+
+Layers
+
+\end{frame}
+
+\begin{frame}
+\frametitle{(Micro)service Architecture}
+
+Fan-out
+
+\end{frame}
+
+\begin{frame}
 \frametitle{Lognormal Black Swans}
 
 \begin{itemize}
@@ -159,35 +173,34 @@ Giving up quickly and retrying can often mean the difference.
 \item P50: 0.1 (~x8 naive, x3 parallel)
 \item P90: 0.44
 \item P99: 1.2 (~x4 naive, x3 parallel) \pause
-\item Retried requests: 25%
 \end{itemize}
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Let's Simulate}
 
-\begin{itemize}
-\item Your Backend is Slow
-\begin{itemize}
-\item Latency costs money
-\item Averages are useless
-\item Behavior of percentiles
-\item Realistic example
-\end{itemize}
-\item Dealing With Slow Backends
-\begin{itemize}
-\item Give up
-\item Retry
-\item Use time wisely
-\end{itemize}
-\item Realistic example
-\begin{itemize}
-\item First example
-\item Simulation
-\item Giving up
-\item Retrying
-\item Using time wisely
-\item Simulation 2
-\end{itemize}
-\end{itemize}
+Retried requests: 25%
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Let's Write Some Code}
+
+\lstinputlisting[firstline=15,lastline=21]{middle-fanout-klein-retry-fail.py}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Let's Simulate}
+
+TBD
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary}
+\end{frame}
 
 \end{document}
