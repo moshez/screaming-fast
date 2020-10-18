@@ -18,7 +18,7 @@ def get_with_timeout(url):
     d = try()
     d.addTimeout(0.1)
     d.addErrback(try)
-    d.addTimeout(0.1)
+    d.addTimeout(0.4)
     return d
 
 @app.route('/')
